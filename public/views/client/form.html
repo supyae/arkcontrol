@@ -1,0 +1,213 @@
+<div class="modal-body">
+
+    <div class="row popup">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-example-wrap mg-t-30">
+                <div class="cmp-tb-hd cmp-int-hd">
+                    <h4 style="text-transform: capitalize"><i class="glyphicon glyphicon-plus-sign"></i> {{ title }} </h4>
+                </div>
+                <hr>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Company Name</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" ng-model="data.name" class="form-control input-sm"
+                                           placeholder="Enter Company Name">
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="name_ERROR">{{ name_ERROR }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Company Address</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="data.address"
+                                           placeholder="Enter Company Address">
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="address_ERROR">{{ address_ERROR
+                                    }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Contact Person Name</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" ng-model="data.contact_person_name" class="form-control input-sm"
+                                           placeholder="Enter Contact Person Name">
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="contact_person_name_ERROR">
+                                    {{ contact_person_name_ERROR }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Contact Person Phone</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="data.contact_person_phone"
+                                           placeholder="Enter Contact Person Phone">
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="contact_person_phone_ERROR">
+                                    {{ contact_person_phone_ERROR }}</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Contact Person Email</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="data.contact_person_email"
+                                           placeholder="Enter Contact Person Email">
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="contact_person_email_ERROR">
+                                    {{ contact_person_email_ERROR }}</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Total Mobile Users </label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <input type="text" class="form-control input-sm"
+                                           ng-model="data.total_mf_subscription"
+                                           placeholder="Enter Total Mobile User">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Choose Country</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <select class="form-control" name="country" ng-model="data.country_id"
+                                            ng-options="c.id as c.name for c in selectors.countries"
+                                            required ng-disabled="readonly">
+                                    </select>
+                                    <p class="text-error col-lg-12 col-md-12" ng-show="country_id_ERROR">{{
+                                        country_id_ERROR }}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Choose Business Type</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <select class="form-control" name="country" ng-model="data.business_id"
+                                            ng-options="b.id as b.name for b in selectors.business"
+                                            required ng-disabled="readonly">
+                                    </select>
+                                    <p class="text-error col-lg-12 col-md-12" ng-show="business_id_ERROR">
+                                        {{ business_id_ERROR }}</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-example-int form-horizental">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
+                                <label class="hrzn-fm">Choose Deployment Site</label>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                <div class="nk-int-st">
+                                    <select class="form-control" name="country" ng-model="data.deployment_id"
+                                            ng-options="d.id as d.name for d in selectors.deployment"
+                                            required ng-disabled="readonly">
+                                    </select>
+                                </div>
+                                <p class="text-error col-lg-12 col-md-12" ng-show="deployment_id_ERROR">
+                                    {{ deployment_id_ERROR }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">&nbsp;</div>
+
+                <div class="form-example-int mg-t-15">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                            <div class="material-design-btn">
+                                <button class="btn notika-btn-gray btn-reco-mg btn-button-mg waves-effect"
+                                        ng-click="cancel()">Cancel
+                                </button>
+                                <button class="btn notika-btn-black btn-reco-mg btn-button-mg waves-effect"
+                                        ng-click="saveClient(title, data.id)"> <span style="text-transform: capitalize"> {{ title }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

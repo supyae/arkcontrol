@@ -1,0 +1,9 @@
+.idea/*
+node_modules/*
+bower_components/*
+public/node_modules/*
+vendor/*
+storage/framework/cache/*
+storage/framework/session/*
+storage/logs/*
+public/storage

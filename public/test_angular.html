@@ -1,0 +1,234 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Time Scheduler</title>
+</head>
+
+<body>
+
+<!--<script src="/lib/jquery/jquery.js"></script>-->
+<!--<script src="/lib/bootstrap/bootstrap.js"></script>-->
+<script src="/lib/angular-1.5.8/angular.js"></script>
+
+<script>
+    angular.module('schedule', [])
+        .controller('myController', ['$http', '$scope', function ($http, $scope) {
+            if ($scope.input_array === undefined) {
+                $scope.input_array = [];
+            }
+
+            $scope.days = [{
+                "id": 1,
+                "name": "Monday"
+            }, {
+                "id": 2,
+                "name": "Tuesday"
+            }, {
+                "id": 3,
+                "name": "Wednesday"
+            }, {
+                "id": 4,
+                "name": "Thursday"
+            }, {
+                "id": 5,
+                "name": "Friday"
+            }
+
+            ];
+
+            $scope.periods = [
+                {
+                    "id": 1,
+                    "name": "06:00 ~ 08:00"
+                }, {
+                    "id": 2,
+                    "name": "08:00 ~ 10:00"
+                }, {
+                    "id": 3,
+                    "name": "10:00 ~ 12:00"
+                }, {
+                    "id": 4,
+                    "name": "12:00 ~ 14:00"
+                }, {
+                    "id": 5,
+                    "name": "14:00 ~ 16:00"
+                }, {
+                    "id": 6,
+                    "name": "16:00 ~ 18:00"
+                }
+            ];
+            $scope.colspan_val = $scope.periods.length + 1;
+            $scope.data = [
+                {
+                    1: [1, 2, 3]
+                },
+                {
+                    2: [2, 3, 4]
+                },
+                {
+                    3: [5, 6]
+                }
+            ];
+
+            setupInputArray();
+            function setupInputArray() {
+
+                if ($scope.data !== undefined) {
+                    angular.forEach($scope.data, function (value, key){
+                        console.log(key + "----");
+                        console.log(value);
+                        angular.forEach(value, function (val, ky) {
+                            angular.forEach(val, function (v, k) {
+                                var day_period = ky+"_"+v;
+                                $scope.input_array.push({day_period})
+                            });
+                        })
+                    })
+                }
+                console.log($scope.input_array);
+            }
+
+
+            //add the selected period
+            $scope.pushSelectedPeriod = function (day_period, checked) {
+                console.log(checked);
+                if (checked === true) {
+                    $scope.input_array.push({day_period})
+                }
+                if (checked === false || checked === undefined) {
+                    for (var i = $scope.input_array.length - 1; i--;) {
+
+                        if ($scope.input_array[i].day_period === day_period) $scope.input_array.splice(i, 1);
+                    }
+                }
+                console.log($scope.input_array);
+            };
+
+            //save the time
+            $scope.saveSchedule = function () {
+                console.log('save');
+                console.log($scope.input_array);
+                $http.post('/test_angular.php', $scope.input_array)
+                    .then(function successCallBack(response) {
+                        console.log(response);
+
+                    }, function errorCallback(error) {
+                        console.log(error);
+                    })
+            }
+
+
+        }])
+</script>
+
+
+<div id="app" ng-app="schedule" ng-controller="myController">
+    <form>
+        <table class="dayparts table">
+            <thead>
+            <tr>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td class="cell-label day-label" style="width: 130px"> Day</td>
+                <td style="width: 150px" ng-repeat="val in periods">
+                    {{ val.name }}
+                </td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <input type="hidden" ng-model="input_array">
+            <tr class='day'>
+                <td colspan="{{ colspan_val }}">
+                    <table>
+                        <tr ng-repeat="(key,val) in days">
+                            <td class="cell-label day-label" style="width: 130px">{{ val.name }} </td>
+
+
+                            <td class='dayparts-cell' style='width: 150px' ng-repeat="period in periods">
+                                {{val.id}}-{{period.id}}
+                                <input type="checkbox" ng-model="checkboxes[val.id][period.id]"
+                                       ng-click="pushSelectedPeriod(val.id +'_'+ period.id, checkboxes[val.id][period.id])"
+                                       ng-checked="data[key][val.id].indexOf(period.id) >= 0">
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <button ng-click="saveSchedule()">Save</button>
+    </form>
+</div>
+
+
+<style>
+    body {
+        font-family: 'Open Sans';
+        background: #eeeeee;
+        user-select: none;
+        font-weight: 400;
+    }
+
+    .dayparts-cell {
+        transition: .3s;
+        background-color: #d3dcde;
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #ededed;
+        cursor: pointer;
+    }
+
+    .active {
+        transition: .3s;
+        background-color: #BDE130 !important;
+    }
+
+    .day-label,
+    .hour {
+        cursor: pointer;
+    }
+
+    option {
+        font-family: 'Open Sans'
+    }
+
+    .day-label {
+        text-align: right;
+        padding: 5px;
+        transition: .3s;
+    }
+
+    .hour {
+        transition: .3s;
+    }
+
+    .day-label:hover,
+    .hour:hover {
+        color: #BDE130;
+    }
+
+    .dayparts-cell:hover {
+        background: #dff460;
+    }
+
+    .active:hover {
+        background: #617c84 !important;
+    }
+
+    .preactive {
+        color: #BDE130;
+    }
+</style>
+</body>
+
+</html>
